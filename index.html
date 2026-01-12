@@ -3,731 +3,309 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="GenRecon3D: 1st Workshop on Generative 3D Reconstruction at CVPR 2026." />
-  <meta name="theme-color" content="#0b1220" />
-
-  <title>GenRecon3D | CVPR 2026 Workshop on Generative 3D Reconstruction</title>
-
+  <meta name="description" content="GenRecon3D: 1st Workshop on Generative 3D Reconstruction (CVPR Workshops 2026)." />
+  <title>GenRecon3D | CVPRW 2026</title>
   <style>
     :root{
-      --bg: #0b1220;
-      --panel: #101a30;
-      --panel2:#0f1a33;
-      --text:#e7ecff;
-      --muted:#b6c0e6;
-      --muted2:#8f9ad1;
-      --line: rgba(231,236,255,.12);
-      --accent:#7aa2ff;
-      --accent2:#64f0c8;
-      --shadow: 0 12px 30px rgba(0,0,0,.35);
-      --radius: 18px;
-      --radius2: 14px;
-      --max: 1080px;
+      --text:#111;
+      --muted:#555;
+      --line:#e7e7e7;
+      --link:#0b57d0;
+      --bg:#fff;
+      --max: 980px;
       --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
     }
-
-    *{box-sizing:border-box}
     html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family: var(--sans);
-      background: radial-gradient(1200px 700px at 20% 0%, rgba(122,162,255,.18), transparent 55%),
-                  radial-gradient(900px 520px at 90% 10%, rgba(100,240,200,.14), transparent 45%),
-                  linear-gradient(180deg, #070b14, var(--bg));
-      color: var(--text);
-      line-height: 1.55;
-    }
+    body{margin:0; background:var(--bg); color:var(--text); font-family:var(--sans); line-height:1.55}
+    main{max-width:var(--max); margin:0 auto; padding: 28px 18px 56px}
+    a{color:var(--link); text-decoration:none}
+    a:hover{text-decoration:underline}
+    hr{border:0; border-top:1px solid var(--line); margin: 18px 0}
+    h1{margin:0 0 8px; font-size: 40px; line-height:1.1}
+    h2{margin: 20px 0 8px; font-size: 22px}
+    h3{margin: 14px 0 6px; font-size: 18px}
+    p{margin: 8px 0; color: var(--text)}
+    .muted{color:var(--muted)}
+    .topline{font-size: 20px; margin: 0 0 6px}
+    .navline{margin: 10px 0 6px; font-size: 16px}
+    .navline a{margin-right: 12px}
+    .pill{display:inline-block; font-family:var(--mono); font-size: 12px; padding: 2px 8px; border: 1px solid var(--line); border-radius: 999px; background:#fafafa; margin-right:8px}
 
-    a{color: var(--text); text-decoration: none}
-    a:hover{color: white}
+    .editions{margin: 10px 0 0}
+    .editions a{display:inline-block; margin-right: 12px}
 
-    .skip{
-      position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden;
-    }
-    .skip:focus{
-      left: 16px; top: 16px; width:auto; height:auto; padding:10px 12px;
-      background: #000; color:#fff; border-radius: 10px; z-index: 1000;
-    }
-
-    header{
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(10px);
-      background: rgba(7,11,20,.55);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .nav{
-      max-width: var(--max);
-      margin: 0 auto;
-      display:flex;
-      align-items:center;
-      justify-content: space-between;
-      padding: 12px 18px;
-      gap: 12px;
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap: 10px;
-      min-width: 220px;
-    }
-
-    .logo{
-      width: 34px; height: 34px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, rgba(122,162,255,.95), rgba(100,240,200,.9));
-      box-shadow: 0 8px 20px rgba(0,0,0,.35);
-      position: relative;
-    }
-
-    .logo:after{
-      content:"";
-      position:absolute;
-      inset: 9px;
-      border-radius: 8px;
-      background: rgba(15,26,51,.75);
-      border: 1px solid rgba(231,236,255,.18);
-    }
-
-    .brand .title{
-      display:flex; flex-direction:column;
-      gap: 2px;
-    }
-    .brand b{font-weight: 750; letter-spacing: .2px}
-    .brand span{font-size: 12px; color: var(--muted2)}
-
-    .navlinks{
-      display:flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: flex-end;
-      align-items:center;
-    }
-    .navlinks a{
-      font-size: 13px;
-      color: var(--muted);
-      padding: 7px 10px;
-      border-radius: 10px;
-      border: 1px solid transparent;
-    }
-    .navlinks a:hover{
-      color: var(--text);
-      border-color: rgba(231,236,255,.12);
-      background: rgba(16,26,48,.55);
-    }
-
-    main{max-width: var(--max); margin: 0 auto; padding: 28px 18px 64px}
-
-    .hero{
+    .speaker{
       display:grid;
-      grid-template-columns: 1.3fr .7fr;
-      gap: 18px;
-      align-items: stretch;
-      margin-top: 14px;
+      grid-template-columns: 96px 1fr;
+      gap: 14px;
+      padding: 12px 0;
+      border-top: 1px solid var(--line);
     }
-
-    .card{
-      background: linear-gradient(180deg, rgba(16,26,48,.92), rgba(15,26,51,.86));
+    .speaker:last-child{border-bottom: 1px solid var(--line)}
+    .avatar{
+      width: 96px; height: 96px;
       border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
-
-    .hero-left{padding: 24px 22px}
-    .hero-right{padding: 18px 18px; display:flex; flex-direction:column; gap: 12px}
-
-    h1{
-      margin: 6px 0 10px;
-      font-size: clamp(28px, 3.3vw, 42px);
-      line-height: 1.15;
-      letter-spacing: .2px;
-    }
-
-    .tagline{
-      color: var(--muted);
-      font-size: 15px;
-      max-width: 62ch;
-      margin: 0 0 16px;
-    }
-
-    .pillrow{display:flex; flex-wrap:wrap; gap: 10px; margin: 16px 0 0}
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      padding: 8px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(231,236,255,.14);
-      background: rgba(7,11,20,.22);
-      color: var(--muted);
-      font-size: 12.5px;
-      white-space: nowrap;
-    }
-    .dot{
-      width: 8px; height: 8px;
-      border-radius: 999px;
-      background: var(--accent);
-      box-shadow: 0 0 0 3px rgba(122,162,255,.15);
-    }
-
-    .ctaRow{display:flex; flex-wrap:wrap; gap: 10px; margin-top: 18px}
-
-    .btn{
-      display:inline-flex;
+      background: #f5f5f5;
+      display:flex;
       align-items:center;
       justify-content:center;
-      gap: 10px;
-      padding: 10px 12px;
-      border-radius: 14px;
-      border: 1px solid rgba(231,236,255,.16);
-      background: rgba(16,26,48,.6);
-      color: var(--text);
-      font-size: 13px;
-      cursor: pointer;
-    }
-
-    .btn.primary{
-      background: linear-gradient(135deg, rgba(122,162,255,.95), rgba(100,240,200,.85));
-      border-color: transparent;
-      color: #06101f;
-      font-weight: 700;
-    }
-    .btn.primary:hover{filter: brightness(1.03)}
-    .btn:hover{border-color: rgba(231,236,255,.26)}
-
-    .kv{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-    }
-
-    .kitem{
-      border: 1px solid rgba(231,236,255,.10);
-      background: rgba(7,11,20,.18);
-      border-radius: var(--radius2);
-      padding: 12px 12px;
-    }
-
-    .kitem .k{font-size: 12px; color: var(--muted2); margin-bottom: 2px}
-    .kitem .v{font-size: 14px; color: var(--text)}
-    .kitem .v code{font-family: var(--mono); font-size: 12.5px; color: rgba(231,236,255,.9)}
-
-    section{margin-top: 22px}
-
-    .sectionHeader{
-      display:flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 12px;
-      margin: 0 0 10px;
-      padding: 0 2px;
-    }
-
-    h2{margin:0; font-size: 18px; letter-spacing: .2px}
-    .hint{color: var(--muted2); font-size: 12.5px}
-
-    .grid2{display:grid; grid-template-columns: 1fr 1fr; gap: 14px}
-    .grid3{display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px}
-
-    .content{padding: 16px 16px}
-    .content p{margin: 0; color: var(--muted); font-size: 14px}
-
-    .list{
-      display:flex; flex-direction:column; gap: 10px;
-    }
-
-    .person{
-      border: 1px solid rgba(231,236,255,.10);
-      background: rgba(7,11,20,.18);
-      border-radius: var(--radius2);
-      padding: 12px 12px;
-    }
-
-    .person .name{font-weight: 750; margin-bottom: 2px}
-    .person .meta{color: var(--muted2); font-size: 12.5px}
-
-    .person a{color: var(--text); border-bottom: 1px solid rgba(231,236,255,.18)}
-    .person a:hover{border-bottom-color: rgba(231,236,255,.5)}
-
-    .tableWrap{overflow:auto; border-radius: var(--radius); border: 1px solid var(--line)}
-    table{border-collapse: collapse; width: 100%; min-width: 720px; background: rgba(7,11,20,.15)}
-    th, td{padding: 12px 12px; border-bottom: 1px solid rgba(231,236,255,.10); text-align:left}
-    th{font-size: 12px; color: var(--muted2); letter-spacing: .2px; background: rgba(16,26,48,.55)}
-    td{font-size: 13.5px; color: var(--muted)}
-    tr:last-child td{border-bottom: none}
-
-    .badge{
       font-family: var(--mono);
-      font-size: 11.5px;
-      color: rgba(231,236,255,.9);
-      padding: 3px 8px;
-      border: 1px solid rgba(231,236,255,.16);
-      border-radius: 999px;
-      display:inline-block;
-      background: rgba(16,26,48,.45);
+      color:#666;
+      border-radius: 6px;
+      user-select:none;
     }
+    .speakerTitle{font-weight: 650}
+    .speakerMeta{color: var(--muted); margin-top: 2px}
 
-    .callout{
-      padding: 16px 16px;
-      border-radius: var(--radius);
-      border: 1px solid rgba(100,240,200,.22);
-      background: linear-gradient(180deg, rgba(100,240,200,.08), rgba(122,162,255,.06));
-    }
-    .callout b{color: var(--text)}
-    .callout p{margin: 6px 0 0; color: var(--muted); font-size: 13.5px}
+    table{border-collapse: collapse; width: 100%; margin-top: 8px}
+    th, td{border:1px solid var(--line); padding: 10px 10px; vertical-align: top; text-align:left}
+    th{background:#fafafa; font-weight: 650}
 
-    footer{
-      max-width: var(--max);
-      margin: 40px auto 0;
-      padding: 0 18px 40px;
-      color: var(--muted2);
-      font-size: 12.5px;
-    }
+    ul{margin: 8px 0 8px 22px}
 
-    .footerRow{
-      display:flex;
-      flex-wrap: wrap;
-      align-items:center;
-      justify-content: space-between;
-      gap: 10px;
-      border-top: 1px solid var(--line);
-      padding-top: 16px;
-    }
+    .foot{margin-top: 22px; padding-top: 14px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px}
 
-    .small{font-size: 12.5px; color: var(--muted2)}
-
-    /* Responsive */
-    @media (max-width: 920px){
-      .hero{grid-template-columns: 1fr;}
-      .brand{min-width: 0}
-      table{min-width: 640px}
-    }
-    @media (max-width: 720px){
-      .grid2,.grid3{grid-template-columns: 1fr}
-      .navlinks{display:none}
-      table{min-width: 560px}
+    @media (max-width: 640px){
+      h1{font-size: 34px}
+      .speaker{grid-template-columns: 72px 1fr}
+      .avatar{width: 72px; height: 72px}
+      .navline a{display:inline-block; margin-bottom: 6px}
     }
   </style>
 </head>
-
 <body>
-  <a class="skip" href="#content">Skip to content</a>
+  <main>
+    <h1>GenRecon3D</h1>
+    <div class="topline">1st Workshop on Generative 3D Reconstruction</div>
+    <div class="muted">in conjunction with CVPR 2026 (Workshop Track).</div>
 
-  <header>
-    <div class="nav" role="navigation" aria-label="Primary">
-      <div class="brand" aria-label="GenRecon3D">
-        <div class="logo" aria-hidden="true"></div>
-        <div class="title">
-          <b>GenRecon3D</b>
-          <span>CVPR 2026 Workshop on Generative 3D Reconstruction</span>
-        </div>
-      </div>
-
-      <nav class="navlinks" aria-label="Sections">
-        <a href="#about">About</a>
-        <a href="#speakers">Speakers</a>
-        <a href="#schedule">Schedule</a>
-        <a href="#submissions">Submissions</a>
-        <a href="#organizers">Organizers</a>
-        <a href="#committee">Program Committee</a>
-        <a href="#diversity">Diversity</a>
-        <a href="#broader">Broader impacts</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
-
-  <main id="content">
-    <div class="hero">
-      <div class="card hero-left">
-        <div class="badge">CVPRW’26 · 1st edition · Half-day · In-person</div>
-        <h1>Workshop on Generative 3D Reconstruction</h1>
-        <p class="tagline">
-          GenRecon3D bridges generative modeling and geometric reconstruction to recover faithful real-world 3D and 4D structure from incomplete observations.
-          The workshop prioritizes physically correct inference, uncertainty reasoning, and rigorous evaluation beyond visible surfaces.
-        </p>
-
-        <div class="ctaRow" role="group" aria-label="Primary actions">
-          <a class="btn primary" href="#submissions" aria-label="Go to paper submission information">Paper submission</a>
-          <a class="btn" href="#schedule" aria-label="Go to schedule">Program schedule</a>
-          <a class="btn" href="#speakers" aria-label="Go to invited speakers">Invited speakers</a>
-        </div>
-
-        <div class="pillrow" aria-label="Keywords">
-          <span class="pill"><span class="dot" aria-hidden="true"></span>3D reconstruction</span>
-          <span class="pill"><span class="dot" aria-hidden="true"></span>Generative AI</span>
-          <span class="pill"><span class="dot" aria-hidden="true"></span>Neural scene representations</span>
-          <span class="pill"><span class="dot" aria-hidden="true"></span>Implicit geometry</span>
-          <span class="pill"><span class="dot" aria-hidden="true"></span>3D Gaussian methods</span>
-          <span class="pill"><span class="dot" aria-hidden="true"></span>Uncertainty and evaluation</span>
-        </div>
-      </div>
-
-      <aside class="card hero-right" aria-label="Quick facts">
-        <div class="kv">
-          <div class="kitem">
-            <div class="k">Acronym</div>
-            <div class="v"><code>GenRecon3D</code></div>
-          </div>
-          <div class="kitem">
-            <div class="k">Format</div>
-            <div class="v">In-person (hybrid support via official CVPR Zoom)</div>
-          </div>
-          <div class="kitem">
-            <div class="k">Expected size</div>
-            <div class="v">Medium (100 to 300 attendees)</div>
-          </div>
-          <div class="kitem">
-            <div class="k">Posters</div>
-            <div class="v">10 poster boards</div>
-          </div>
-          <div class="kitem">
-            <div class="k">Proceedings</div>
-            <div class="v">Full papers published in proceedings</div>
-          </div>
-        </div>
-      </aside>
+    <div style="margin-top:10px">
+      <span class="pill">CVPRW’26</span>
+      <span class="pill">Half-day</span>
+      <span class="pill">In-person</span>
+      <span class="pill">Proceedings: yes</span>
     </div>
 
-    <section id="about">
-      <div class="sectionHeader">
-        <h2>About</h2>
-        <div class="hint">Focus: reconstructing the real rather than generating the plausible</div>
-      </div>
-      <div class="card content">
-        <p>
-          The Workshop on Generative 3D Reconstruction focuses on bridging generative modeling and geometric reconstruction to recover real-world 3D structure from incomplete observations.
-          Unlike approaches emphasizing visual plausibility, GenRecon3D targets faithful recovery of underlying geometry using learned priors, uncertainty-aware reasoning, and physically grounded models.
-          The workshop unites researchers across neural scene representations, implicit geometry, and 3D Gaussian methods, with the goal of establishing principles and metrics for accurate, trustworthy, and generalizable reconstruction.
-          The program will feature invited talks, oral presentations, poster sessions, and discussions shaping the next generation of generative 3D vision methods.
+    <div class="navline">
+      <a href="#schedule">Schedule</a>
+      <a href="#speakers">Speakers</a>
+      <a href="#paper-track">Paper track</a>
+      <a href="#organizers">Organizers</a>
+      <a href="#committee">Program committee</a>
+      <a href="#diversity">Diversity</a>
+      <a href="#broader">Broader impacts</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+    <div class="editions">
+      <div class="muted" style="margin-bottom:4px">All editions</div>
+      <a href="#" aria-label="CVPR 2026 edition (current)">CVPR 2026 (current)</a>
+    </div>
+
+    <hr />
+
+    <h2 id="introduction">Introduction</h2>
+    <p>
+      GenRecon3D consolidates emerging directions at the intersection of generative modeling and geometric reconstruction.
+      The workshop targets faithful recovery of underlying 3D and potentially 4D geometry from incomplete observations.
+      Unlike approaches prioritizing visual plausibility, we emphasize metric accuracy, physical correctness, and principled uncertainty reasoning.
+    </p>
+    <p>
+      The program features invited talks, oral and poster presentations, and community discussions on evaluation protocols and robust benchmarks
+      that assess geometric and semantic accuracy beyond visible surfaces.
+    </p>
+
+    <h2 id="speakers">Keynote speakers (confirmed)</h2>
+
+    <div class="speaker">
+      <div class="avatar" aria-hidden="true">AK</div>
+      <div>
+        <div class="speakerTitle">Angjoo Kanazawa</div>
+        <div class="speakerMeta">Assistant Professor, UC Berkeley · <a href="https://people.eecs.berkeley.edu/~kanazawa/" target="_blank" rel="noreferrer">people.eecs.berkeley.edu/~kanazawa</a></div>
+        <p class="muted">
+          Learning-based 3D reconstruction, human and object modeling, and generative methods for deformable and articulated shapes.
+          Contributions to neural implicit representations and structured generative models for faithful 3D inference from monocular inputs.
         </p>
       </div>
-    </section>
+    </div>
 
-    <section id="speakers">
-      <div class="sectionHeader">
-        <h2>Invited speakers (confirmed)</h2>
-        <div class="hint">Websites are provided for reference</div>
-      </div>
-
-      <div class="grid2">
-        <div class="card content">
-          <div class="list" aria-label="Invited speakers">
-            <div class="person">
-              <div class="name">Angjoo Kanazawa</div>
-              <div class="meta">Assistant Professor, UC Berkeley · <a href="https://people.eecs.berkeley.edu/~kanazawa/" target="_blank" rel="noreferrer">website</a></div>
-            </div>
-            <div class="person">
-              <div class="name">Christian Rupprecht</div>
-              <div class="meta">Associate Professor, University of Oxford · <a href="https://chrirupp.github.io/" target="_blank" rel="noreferrer">website</a></div>
-            </div>
-            <div class="person">
-              <div class="name">Katja Schwarz</div>
-              <div class="meta">AI Research Scientist, SpAItial · <a href="https://katjaschwarz.github.io/" target="_blank" rel="noreferrer">website</a></div>
-            </div>
-            <div class="person">
-              <div class="name">Philipp Henzler</div>
-              <div class="meta">Research Scientist, Google · <a href="https://henzler.github.io/" target="_blank" rel="noreferrer">website</a></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card content">
-          <p>
-            Speaker perspectives include monocular and multi-view generative reconstruction, uncertainty-aware inference, neural rendering for dynamic scenes, and inverse rendering with physically grounded priors.
-            The workshop emphasizes geometric fidelity, interpretability, and evaluation beyond visible surfaces.
-          </p>
-          <div style="height: 12px"></div>
-          <div class="callout">
-            <b>Note</b>
-            <p>
-              This website is a workshop landing page template based on the submitted proposal.
-              Add registration links, CVPR room details, and paper submission system links once they are announced.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="schedule">
-      <div class="sectionHeader">
-        <h2>Schedule</h2>
-        <div class="hint">Half-day program (local CVPR time)</div>
-      </div>
-
-      <div class="card content" style="padding: 0">
-        <div class="tableWrap" role="region" aria-label="Workshop schedule" tabindex="0">
-          <table>
-            <thead>
-              <tr>
-                <th style="width: 140px">Time</th>
-                <th>Session</th>
-                <th style="width: 120px">Duration</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>13:15 to 13:30</td>
-                <td>Welcome and introduction</td>
-                <td>15 min</td>
-              </tr>
-              <tr>
-                <td>13:30 to 14:15</td>
-                <td>Keynote 1: Angjoo Kanazawa</td>
-                <td>45 min</td>
-              </tr>
-              <tr>
-                <td>14:15 to 15:00</td>
-                <td>Keynote 2: Christian Rupprecht</td>
-                <td>45 min</td>
-              </tr>
-              <tr>
-                <td>15:00 to 15:35</td>
-                <td>Oral session</td>
-                <td>35 min</td>
-              </tr>
-              <tr>
-                <td>15:35 to 16:20</td>
-                <td>Poster session and coffee break</td>
-                <td>45 min</td>
-              </tr>
-              <tr>
-                <td>16:20 to 17:05</td>
-                <td>Keynote 3: Katja Schwarz</td>
-                <td>45 min</td>
-              </tr>
-              <tr>
-                <td>17:05 to 17:50</td>
-                <td>Keynote 4: Philipp Henzler</td>
-                <td>45 min</td>
-              </tr>
-              <tr>
-                <td>17:50 to 18:00</td>
-                <td>Closing remarks</td>
-                <td>10 min</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <section id="submissions">
-      <div class="sectionHeader">
-        <h2>Paper submission</h2>
-        <div class="hint">Proceedings: yes (full papers)</div>
-      </div>
-
-      <div class="grid2">
-        <div class="card content">
-          <p>
-            We accept novel full 8-page papers (CVPR 2026 format) for publication in the proceedings, as well as shorter 4-page extended abstracts.
-            Extended abstracts may describe novel or previously published work, will not appear in the proceedings, and will be presented during the poster session if accepted.
-          </p>
-          <div style="height: 12px"></div>
-          <div class="callout">
-            <b>Submission portal</b>
-            <p>
-              Placeholder: add a direct link to the submission system (for example, CMT or OpenReview) once available.
-            </p>
-          </div>
-        </div>
-
-        <div class="card content" style="padding: 0">
-          <div class="tableWrap" role="region" aria-label="Submission timeline" tabindex="0">
-            <table>
-              <thead>
-                <tr>
-                  <th>Milestone</th>
-                  <th>Date</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Submission opens</td>
-                  <td>February 1, 2026</td>
-                </tr>
-                <tr>
-                  <td>Submission deadline</td>
-                  <td>March 24, 2026</td>
-                </tr>
-                <tr>
-                  <td>Notification to authors</td>
-                  <td>March 31, 2026</td>
-                </tr>
-                <tr>
-                  <td>Camera-ready deadline</td>
-                  <td>April 11, 2026</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="organizers">
-      <div class="sectionHeader">
-        <h2>Organizers</h2>
-        <div class="hint">Academia and industry</div>
-      </div>
-
-      <div class="card content">
-        <div class="grid3" aria-label="Organizers list">
-          <div class="person">
-            <div class="name">Daniel Barath</div>
-            <div class="meta">ETH Zurich, Google · <a href="mailto:dbarath@ethz.ch">dbarath@ethz.ch</a></div>
-          </div>
-          <div class="person">
-            <div class="name">Marie-Julie Rakotosaona</div>
-            <div class="meta">Google</div>
-          </div>
-          <div class="person">
-            <div class="name">Fabian Manhardt</div>
-            <div class="meta">Google · <a href="mailto:fabianmanhardt@google.com">fabianmanhardt@google.com</a></div>
-          </div>
-          <div class="person">
-            <div class="name">Michael Niemeyer</div>
-            <div class="meta">Google</div>
-          </div>
-          <div class="person">
-            <div class="name">Federico Tombari</div>
-            <div class="meta">Google, TUM</div>
-          </div>
-          <div class="person">
-            <div class="name">Michael Oechsle</div>
-            <div class="meta">Google</div>
-          </div>
-          <div class="person">
-            <div class="name">Marc Pollefeys</div>
-            <div class="meta">ETH Zurich, Microsoft</div>
-          </div>
-          <div class="person">
-            <div class="name">Ata Celen</div>
-            <div class="meta">ETH Zurich</div>
-          </div>
-          <div class="person">
-            <div class="name">Keisuke Tateno</div>
-            <div class="meta">Google</div>
-          </div>
-        </div>
-
-        <div style="height: 12px"></div>
-        <p class="small">
-          Primary contact: Daniel Barath (<a href="mailto:dbarath@ethz.ch">dbarath@ethz.ch</a>) · Secondary contact: Fabian Manhardt (<a href="mailto:fabianmanhardt@google.com">fabianmanhardt@google.com</a>)
+    <div class="speaker">
+      <div class="avatar" aria-hidden="true">CR</div>
+      <div>
+        <div class="speakerTitle">Christian Rupprecht</div>
+        <div class="speakerMeta">Associate Professor, University of Oxford · <a href="https://chrirupp.github.io/" target="_blank" rel="noreferrer">chrirupp.github.io</a></div>
+        <p class="muted">
+          Representation learning, implicit neural models, and probabilistic methods for 3D scene understanding.
+          Work on uncertainty-aware reconstruction and compositional modeling relevant to reliable 3D reconstruction under uncertainty.
         </p>
       </div>
-    </section>
+    </div>
 
-    <section id="committee">
-      <div class="sectionHeader">
-        <h2>Tentative program committee</h2>
-        <div class="hint">List from proposal</div>
-      </div>
-
-      <div class="card content">
-        <p style="margin-bottom: 12px">Sunghwan Hong, Nicole Damblon, Helisa Dhamo, Enis Simsar, Elisabetta Fedele, Hide Matsuki, Juanjo Gómez Rodríguez, Orest Kupyn, Linfei Pan, Shaohui Liu, Johanna Wald, Titas Anciukevičius, Peter Hedman, Zador Pataki, Diego Martin Arroyo, Kunyi Li, Zuria Bauer, Philipp Lindenberger, Jonas Kulhanek, Tianshi Cao, Felix Wimbauer, Paul-Edouard Sarlin, Fangjinhua Wang, Barbara Roessle, Zihan Zhu, Botao Ye, Philip Henzler, Goutam Bhat, Songyou Peng, Haofei Xu, Nikita Araslanov</p>
-        <p class="small">Update this section as the committee is finalized.</p>
-      </div>
-    </section>
-
-    <section id="diversity">
-      <div class="sectionHeader">
-        <h2>Diversity</h2>
-        <div class="hint">Organizers and invited speakers</div>
-      </div>
-
-      <div class="grid2">
-        <div class="card content">
-          <p>
-            Organizing committee: 1 female and 8 male researchers spanning academia (ETH Zurich, TUM) and industry (Google, Microsoft), with a range of seniority levels from PhD student to professor.
-          </p>
-        </div>
-        <div class="card content">
-          <p>
-            Invited speakers: four confirmed speakers, two female and two male, representing academia and industry across North America and Europe.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section id="broader">
-      <div class="sectionHeader">
-        <h2>Broader impacts and ethics</h2>
-        <div class="hint">Trustworthy reconstruction and responsible deployment</div>
-      </div>
-
-      <div class="card content">
-        <p>
-          The workshop advances generative reconstruction methods that target truthful recovery of real environments, with relevance to robotics, autonomous systems, digital twins, and AR/VR.
-          The program highlights evaluation protocols for geometric and semantic accuracy, robustness under partial observations, and uncertainty quantification.
+    <div class="speaker">
+      <div class="avatar" aria-hidden="true">KS</div>
+      <div>
+        <div class="speakerTitle">Katja Schwarz</div>
+        <div class="speakerMeta">AI Research Scientist, SpAItial · <a href="https://katjaschwarz.github.io/" target="_blank" rel="noreferrer">katjaschwarz.github.io</a></div>
+        <p class="muted">
+          Neural scene representations, dynamic view synthesis, and temporally coherent generative 3D modeling.
+          Expertise in combining generative neural fields with physically grounded reconstruction for partially observed scenes.
         </p>
-        <div style="height: 12px"></div>
-        <div class="callout">
-          <b>Social and ethical considerations</b>
-          <p>
-            We will screen submissions for ethical misconduct and misuse, encourage work on transparency and bias mitigation, and include an ethics-focused segment within the panel discussion.
-          </p>
-        </div>
       </div>
-    </section>
+    </div>
 
-    <section id="contact">
-      <div class="sectionHeader">
-        <h2>Contact</h2>
-        <div class="hint">Email and updates</div>
+    <div class="speaker">
+      <div class="avatar" aria-hidden="true">PH</div>
+      <div>
+        <div class="speakerTitle">Philipp Henzler</div>
+        <div class="speakerMeta">Research Scientist, Google · <a href="https://henzler.github.io/" target="_blank" rel="noreferrer">henzler.github.io</a></div>
+        <p class="muted">
+          Generative modeling, inverse rendering, and photometric 3D reconstruction.
+          Work on integrating neural priors with physically based rendering for geometry and appearance under real imaging conditions.
+        </p>
       </div>
+    </div>
 
-      <div class="grid2">
-        <div class="card content">
-          <p>
-            For questions, contact the organizers:
-            <br />
-            Daniel Barath: <a href="mailto:dbarath@ethz.ch">dbarath@ethz.ch</a>
-            <br />
-            Fabian Manhardt: <a href="mailto:fabianmanhardt@google.com">fabianmanhardt@google.com</a>
-          </p>
-        </div>
+    <h2 id="schedule">Schedule</h2>
+    <p class="muted">Half-day workshop schedule (local CVPR time). Room and streaming link will be added when available.</p>
 
-        <div class="card content">
-          <p>
-            Add workshop updates here: registration link, room assignment, live stream link, camera-ready instructions, and accepted paper list.
-          </p>
-        </div>
-      </div>
-    </section>
+    <table aria-label="Workshop schedule">
+      <thead>
+        <tr>
+          <th style="width:170px">Time</th>
+          <th>Session</th>
+          <th style="width:120px">Duration</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>13:15 to 13:30</td>
+          <td>Welcome and introduction</td>
+          <td>15 min</td>
+        </tr>
+        <tr>
+          <td>13:30 to 14:15</td>
+          <td>Keynote 1: Angjoo Kanazawa</td>
+          <td>45 min</td>
+        </tr>
+        <tr>
+          <td>14:15 to 15:00</td>
+          <td>Keynote 2: Christian Rupprecht</td>
+          <td>45 min</td>
+        </tr>
+        <tr>
+          <td>15:00 to 15:35</td>
+          <td>Oral session</td>
+          <td>35 min</td>
+        </tr>
+        <tr>
+          <td>15:35 to 16:20</td>
+          <td>Poster session and coffee break</td>
+          <td>45 min</td>
+        </tr>
+        <tr>
+          <td>16:20 to 17:05</td>
+          <td>Keynote 3: Katja Schwarz</td>
+          <td>45 min</td>
+        </tr>
+        <tr>
+          <td>17:05 to 17:50</td>
+          <td>Keynote 4: Philipp Henzler</td>
+          <td>45 min</td>
+        </tr>
+        <tr>
+          <td>17:50 to 18:00</td>
+          <td>Closing remarks</td>
+          <td>10 min</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 id="paper-track">Paper track</h2>
+    <p>
+      We accept (i) novel full 8-page papers (CVPR 2026 format) for publication in the proceedings, and (ii) shorter 4-page extended abstracts.
+      Extended abstracts may describe novel or previously published work, will not appear in the proceedings, and will be presented during the poster session if accepted.
+    </p>
+
+    <h3>Important dates</h3>
+    <table aria-label="Paper track dates">
+      <thead>
+        <tr>
+          <th>Milestone</th>
+          <th style="width:260px">Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Submission opens</td>
+          <td>February 1, 2026</td>
+        </tr>
+        <tr>
+          <td>Submission deadline</td>
+          <td>March 24, 2026</td>
+        </tr>
+        <tr>
+          <td>Notification to authors</td>
+          <td>March 31, 2026</td>
+        </tr>
+        <tr>
+          <td>Camera-ready deadline</td>
+          <td>April 11, 2026</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="muted"><b>Submission portal:</b> placeholder. Add a link to CMT/OpenReview once available.</p>
+
+    <h2 id="organizers">Organizers</h2>
+    <ul>
+      <li>Daniel Barath (ETH Zurich, Google) · <a href="mailto:dbarath@ethz.ch">dbarath@ethz.ch</a></li>
+      <li>Marie-Julie Rakotosaona (Google)</li>
+      <li>Fabian Manhardt (Google) · <a href="mailto:fabianmanhardt@google.com">fabianmanhardt@google.com</a></li>
+      <li>Michael Niemeyer (Google)</li>
+      <li>Federico Tombari (Google, TUM)</li>
+      <li>Michael Oechsle (Google)</li>
+      <li>Marc Pollefeys (ETH Zurich, Microsoft)</li>
+      <li>Ata Celen (ETH Zurich)</li>
+      <li>Keisuke Tateno (Google)</li>
+    </ul>
+
+    <h2 id="committee">Tentative program committee</h2>
+    <p class="muted">List from the proposal. Update as the committee is finalized.</p>
+    <p>
+      Sunghwan Hong; Nicole Damblon; Helisa Dhamo; Enis Simsar; Elisabetta Fedele; Hide Matsuki; Juanjo Gómez Rodríguez; Orest Kupyn; Linfei Pan; Shaohui Liu;
+      Johanna Wald; Titas Anciukevičius; Peter Hedman; Zador Pataki; Diego Martin Arroyo; Kunyi Li; Zuria Bauer; Philipp Lindenberger; Jonas Kulhanek; Tianshi Cao;
+      Felix Wimbauer; Paul-Edouard Sarlin; Fangjinhua Wang; Barbara Roessle; Zihan Zhu; Botao Ye; Philip Henzler; Goutam Bhat; Songyou Peng; Haofei Xu; Nikita Araslanov.
+    </p>
+
+    <h2 id="diversity">Diversity</h2>
+    <p>
+      Organizing committee: 1 female and 8 male researchers from academia (ETH Zurich, TUM) and industry (Google, Microsoft), with a range of seniority levels.
+    </p>
+    <p>
+      Invited speakers: four confirmed speakers, two female and two male, spanning institutions in North America and Europe across academia and industry.
+    </p>
+
+    <h2 id="broader">Broader impacts and ethics</h2>
+    <p>
+      Progress in generative reconstruction has implications for robotics, autonomous systems, digital twins, and AR/VR, where accurate scene reconstruction is essential under incomplete sensing.
+      The workshop prioritizes truthful recovery of real environments, evaluation beyond visible surfaces, and uncertainty-aware inference.
+    </p>
+    <p>
+      Social and ethical considerations include privacy and surveillance risks, and potential biases from training data.
+      We commit to screening submissions for ethical misconduct and misuse, encouraging transparency and bias mitigation, and including an ethics-focused segment in the panel discussion.
+    </p>
+
+    <h2 id="contact">Contact</h2>
+    <p>
+      Primary contact: Daniel Barath (<a href="mailto:dbarath@ethz.ch">dbarath@ethz.ch</a>).<br />
+      Secondary contact: Fabian Manhardt (<a href="mailto:fabianmanhardt@google.com">fabianmanhardt@google.com</a>).
+    </p>
+
+    <div class="foot">
+      This is a static single-page site modeled after a minimal workshop landing page layout.
+      Replace placeholders (room, streaming, submission portal, accepted papers) when announcements are available.
+    </div>
   </main>
-
-  <footer>
-    <div class="footerRow">
-      <div>© 2026 GenRecon3D organizers. Content based on the CVPRW’26 proposal.</div>
-      <div>Template: single-file HTML, no external dependencies.</div>
-    </div>
-  </footer>
-
-  <script>
-    // Optional: highlight the active section in the header on scroll.
-    // Disabled on small screens where nav links are hidden.
-    (function(){
-      const nav = document.querySelectorAll('.navlinks a');
-      if(!nav.length) return;
-      const ids = Array.from(nav).map(a => a.getAttribute('href')).filter(Boolean);
-      const sections = ids.map(id => document.querySelector(id)).filter(Boolean);
-      const setActive = (hash) => {
-        nav.forEach(a => a.style.color = (a.getAttribute('href') === hash) ? 'var(--text)' : 'var(--muted)');
-      };
-      const obs = new IntersectionObserver((entries) => {
-        const visible = entries
-          .filter(e => e.isIntersecting)
-          .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if(visible) setActive('#' + visible.target.id);
-      }, { rootMargin: '-20% 0px -70% 0px', threshold: [0, .1, .2, .35, .5, .65, .8, 1] });
-      sections.forEach(s => obs.observe(s));
-    })();
-  </script>
 </body>
 </html>
