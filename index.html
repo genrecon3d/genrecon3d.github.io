@@ -17,6 +17,7 @@
       --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
     }
+    html, body { overflow-x: hidden; }
     html{scroll-behavior:smooth}
     body{margin:0; background:var(--bg); color:var(--text); font-family:var(--sans); line-height:1.55}
     main{max-width:var(--max); margin:0 auto; padding: 28px 18px 56px}
@@ -43,6 +44,7 @@
       font-size: 15px;
       line-height: 1.2;
       cursor: pointer;
+      border-color: #e6e6e6;
     }
     .btn:hover{
       background:#0843a6;
@@ -160,6 +162,26 @@
       height: 70%;
       width: auto;
       z-index: 4;
+    }
+
+    @media (max-width: 960px){
+      .pageBanner{ min-width: 0; }
+      .banner{
+        min-width: 0;
+        width: 100%;
+      }
+      
+      .banner-logo.cvpr{
+        display: none;
+      }
+      
+      .navline{margin: 0px 0 0px; font-size: 0px;}
+      .navline a{margin-right: 6px}
+      .btn{
+        padding: 8px 8px;
+        font-size: 13px;
+        line-height: 1.2;
+      }
     }
 
   </style>
