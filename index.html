@@ -90,6 +90,85 @@
 
     .foot{margin-top: 22px; padding-top: 14px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px}
 
+    .award{
+      display:inline-block;
+      font-family:var(--mono);
+      font-size: 11px;
+      padding: 1px 8px;
+      margin-left: 4px;
+      border-radius: 999px;
+      background: #fff7d6;
+      color: #7a5b00;
+      border: 1px solid #f0d985;
+      vertical-align: 2px;
+    }
+
+    .gallery{
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .gallery a{
+      display:block;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #f5f5f5;
+      aspect-ratio: 1 / 1;
+    }
+    .gallery img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      display:block;
+      transition: transform .25s ease;
+    }
+    .gallery a:hover img{ transform: scale(1.04); }
+
+    .lightbox{
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.88);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 24px;
+      cursor: zoom-out;
+    }
+    .lightbox.open{ display:flex; }
+    .lightbox img{
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      box-shadow: 0 4px 30px rgba(0,0,0,.5);
+    }
+    .lightbox .lb-close{
+      position: absolute;
+      top: 16px; right: 20px;
+      color: #fff;
+      font-size: 28px;
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .lightbox .lb-nav{
+      position: absolute;
+      top: 50%; transform: translateY(-50%);
+      color: #fff;
+      background: rgba(255,255,255,.08);
+      border: 0;
+      width: 44px; height: 44px;
+      font-size: 24px;
+      cursor: pointer;
+      border-radius: 50%;
+    }
+    .lightbox .lb-nav:hover{ background: rgba(255,255,255,.18); }
+    .lightbox .lb-prev{ left: 16px; }
+    .lightbox .lb-next{ right: 16px; }
+
     @media (max-width: 640px){
       h1{font-size: 34px}
       .speaker{grid-template-columns: 72px 1fr}
@@ -227,6 +306,7 @@
     <a class="btn" href="#accepted-papers">Accepted papers</a>
     <a class="btn" href="#organizers">Organizers</a>
     <a class="btn" href="#example-papers">Example papers</a>
+    <a class="btn" href="#gallery">Photos</a>
     <a class="btn" href="#contact">Contact</a>
     </div>
 
@@ -412,7 +492,7 @@
 
     <h3>Oral presentations</h3>
     <ul>
-      <li><i>StaDy4D: Towards Complete 4D Reconstruction with SIGMA.</i> Hao-Tang Tsui et al.</li>
+      <li><i>StaDy4D: Towards Complete 4D Reconstruction with SIGMA.</i> Hao-Tang Tsui et al. <span class="award">Best paper award</span></li>
       <li><i>PersistGS: Differentiable Physics for Object Permanence in 4D Gaussian Splatting.</i> Adrian Ramlal et al.</li>
       <li><i>TFDM: Time-Variant Frequency-Based Point Cloud Diffusion with State Space Model.</i> Jiaxu Liu et al.</li>
       <li><i>How to Spin an Object: First, Get the Shape Right.</i> Rishabh Kabra et al.</li>
@@ -572,6 +652,50 @@
       </li>
     </ul>
 
+    <h2 id="gallery">Photos</h2>
+    <p class="muted">A few moments from the workshop. Click any photo to enlarge.</p>
+    <div class="gallery" id="galleryGrid">
+      <a href="images/gallery/IMG_2361.jpg"><img loading="lazy" src="images/gallery/thumbs/IMG_2361.jpg" alt="Workshop photo"></a>
+      <a href="images/gallery/IMG_2362.jpg"><img loading="lazy" src="images/gallery/thumbs/IMG_2362.jpg" alt="Workshop photo"></a>
+      <a href="images/gallery/IMG_2363.jpg"><img loading="lazy" src="images/gallery/thumbs/IMG_2363.jpg" alt="Workshop photo"></a>
+      <a href="images/gallery/IMG_2364.jpg"><img loading="lazy" src="images/gallery/thumbs/IMG_2364.jpg" alt="Workshop photo"></a>
+      <a href="images/gallery/IMG_2365.jpg"><img loading="lazy" src="images/gallery/thumbs/IMG_2365.jpg" alt="Workshop photo"></a>
+      <a href="images/gallery/IMG_2367.jpg"><img loading="lazy" src="images/gallery/thumbs/IMG_2367.jpg" alt="Workshop photo"></a>
+      <a href="images/gallery/IMG_2368.jpg"><img loading="lazy" src="images/gallery/thumbs/IMG_2368.jpg" alt="Workshop photo"></a>
+      <a href="images/gallery/IMG_2369.jpg"><img loading="lazy" src="images/gallery/thumbs/IMG_2369.jpg" alt="Workshop photo"></a>
+      <a href="images/gallery/IMG_2370.jpg"><img loading="lazy" src="images/gallery/thumbs/IMG_2370.jpg" alt="Workshop photo"></a>
+      <a href="images/gallery/IMG_2371.jpg"><img loading="lazy" src="images/gallery/thumbs/IMG_2371.jpg" alt="Workshop photo"></a>
+      <a href="images/gallery/IMG_2372.jpg"><img loading="lazy" src="images/gallery/thumbs/IMG_2372.jpg" alt="Workshop photo"></a>
+      <a href="images/gallery/IMG_2373.jpg"><img loading="lazy" src="images/gallery/thumbs/IMG_2373.jpg" alt="Workshop photo"></a>
+      <a href="images/gallery/IMG_2374.jpg"><img loading="lazy" src="images/gallery/thumbs/IMG_2374.jpg" alt="Workshop photo"></a>
+      <a href="images/gallery/IMG_2375.jpg"><img loading="lazy" src="images/gallery/thumbs/IMG_2375.jpg" alt="Workshop photo"></a>
+      <a href="images/gallery/IMG_2376.jpg"><img loading="lazy" src="images/gallery/thumbs/IMG_2376.jpg" alt="Workshop photo"></a>
+      <a href="images/gallery/IMG_2377.jpg"><img loading="lazy" src="images/gallery/thumbs/IMG_2377.jpg" alt="Workshop photo"></a>
+      <a href="images/gallery/IMG_2378.jpg"><img loading="lazy" src="images/gallery/thumbs/IMG_2378.jpg" alt="Workshop photo"></a>
+      <a href="images/gallery/IMG_2379.jpg"><img loading="lazy" src="images/gallery/thumbs/IMG_2379.jpg" alt="Workshop photo"></a>
+      <a href="images/gallery/IMG_2381.jpg"><img loading="lazy" src="images/gallery/thumbs/IMG_2381.jpg" alt="Workshop photo"></a>
+      <a href="images/gallery/IMG_2382.jpg"><img loading="lazy" src="images/gallery/thumbs/IMG_2382.jpg" alt="Workshop photo"></a>
+      <a href="images/gallery/IMG_2383.jpg"><img loading="lazy" src="images/gallery/thumbs/IMG_2383.jpg" alt="Workshop photo"></a>
+      <a href="images/gallery/IMG_2384.jpg"><img loading="lazy" src="images/gallery/thumbs/IMG_2384.jpg" alt="Workshop photo"></a>
+      <a href="images/gallery/IMG_2385.jpg"><img loading="lazy" src="images/gallery/thumbs/IMG_2385.jpg" alt="Workshop photo"></a>
+      <a href="images/gallery/IMG_2386.jpg"><img loading="lazy" src="images/gallery/thumbs/IMG_2386.jpg" alt="Workshop photo"></a>
+      <a href="images/gallery/IMG_2387.jpg"><img loading="lazy" src="images/gallery/thumbs/IMG_2387.jpg" alt="Workshop photo"></a>
+      <a href="images/gallery/IMG_2388.jpg"><img loading="lazy" src="images/gallery/thumbs/IMG_2388.jpg" alt="Workshop photo"></a>
+      <a href="images/gallery/IMG_2389.jpg"><img loading="lazy" src="images/gallery/thumbs/IMG_2389.jpg" alt="Workshop photo"></a>
+      <a href="images/gallery/IMG_2390.jpg"><img loading="lazy" src="images/gallery/thumbs/IMG_2390.jpg" alt="Workshop photo"></a>
+      <a href="images/gallery/IMG_2391.jpg"><img loading="lazy" src="images/gallery/thumbs/IMG_2391.jpg" alt="Workshop photo"></a>
+      <a href="images/gallery/IMG_2392.jpg"><img loading="lazy" src="images/gallery/thumbs/IMG_2392.jpg" alt="Workshop photo"></a>
+      <a href="images/gallery/IMG_2393.jpg"><img loading="lazy" src="images/gallery/thumbs/IMG_2393.jpg" alt="Workshop photo"></a>
+      <a href="images/gallery/IMG_2394.jpg"><img loading="lazy" src="images/gallery/thumbs/IMG_2394.jpg" alt="Workshop photo"></a>
+    </div>
+
+    <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog">
+      <button class="lb-close" aria-label="Close">&times;</button>
+      <button class="lb-nav lb-prev" aria-label="Previous">&#10094;</button>
+      <img id="lightboxImg" alt="">
+      <button class="lb-nav lb-next" aria-label="Next">&#10095;</button>
+    </div>
+
     <h2 id="contact">Contact</h2>
     <p>
       Daniel Barath (<a href="mailto:dbarath@ethz.ch">dbarath@ethz.ch</a>) or
@@ -584,6 +708,41 @@
       software development and support.
     </div>
   </main>
+
+  <script>
+    (function(){
+      var grid = document.getElementById('galleryGrid');
+      if(!grid) return;
+      var links = Array.prototype.slice.call(grid.querySelectorAll('a'));
+      var lb = document.getElementById('lightbox');
+      var lbImg = document.getElementById('lightboxImg');
+      var idx = 0;
+      function open(i){
+        idx = (i + links.length) % links.length;
+        lbImg.src = links[idx].getAttribute('href');
+        lb.classList.add('open');
+        lb.setAttribute('aria-hidden','false');
+      }
+      function close(){
+        lb.classList.remove('open');
+        lb.setAttribute('aria-hidden','true');
+        lbImg.src = '';
+      }
+      links.forEach(function(a, i){
+        a.addEventListener('click', function(e){ e.preventDefault(); open(i); });
+      });
+      lb.querySelector('.lb-close').addEventListener('click', function(e){ e.stopPropagation(); close(); });
+      lb.querySelector('.lb-prev').addEventListener('click', function(e){ e.stopPropagation(); open(idx-1); });
+      lb.querySelector('.lb-next').addEventListener('click', function(e){ e.stopPropagation(); open(idx+1); });
+      lb.addEventListener('click', function(e){ if(e.target === lb) close(); });
+      document.addEventListener('keydown', function(e){
+        if(!lb.classList.contains('open')) return;
+        if(e.key === 'Escape') close();
+        else if(e.key === 'ArrowRight') open(idx+1);
+        else if(e.key === 'ArrowLeft') open(idx-1);
+      });
+    })();
+  </script>
 </body>
 
 </html>
