@@ -103,6 +103,57 @@
       vertical-align: 2px;
     }
 
+    .recordings{
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 14px;
+      margin-top: 10px;
+    }
+    .rec-card{
+      display:block;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fafafa;
+      color: var(--text);
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .rec-card:hover{
+      text-decoration: none;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(0,0,0,.08);
+    }
+    .rec-thumb{
+      position: relative;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      overflow: hidden;
+    }
+    .rec-thumb img{
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .rec-play{
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      pointer-events: none;
+    }
+    .rec-play .badge{
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      background: rgba(0,0,0,.65);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .15s ease;
+    }
+    .rec-card:hover .rec-play .badge{ background: rgba(204,0,0,.85); }
+    .rec-play svg{ width: 24px; height: 24px; fill: #fff; margin-left: 4px; }
+    .rec-meta{ padding: 10px 12px 12px; }
+    .rec-title{ font-weight: 650; font-size: 15px; }
+    .rec-sub{ color: var(--muted); font-size: 13px; margin-top: 2px; }
+
     .gallery{
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -301,6 +352,7 @@
   <main>
     <div class="navline">
     <a class="btn" href="#speakers">Speakers</a>
+    <a class="btn" href="#recordings">Recordings</a>
     <a class="btn" href="#schedule">Schedule</a>
     <a class="btn" href="#paper-track">Paper track</a>
     <a class="btn" href="#accepted-papers">Accepted papers</a>
@@ -380,6 +432,51 @@
       </div>
     </div>
 
+
+    <h2 id="recordings">Recordings</h2>
+    <p class="muted">Keynote talk recordings on YouTube.</p>
+    <div class="recordings">
+      <a class="rec-card" href="https://youtu.be/VUAokop0MTA" target="_blank" rel="noreferrer">
+        <div class="rec-thumb">
+          <img loading="lazy" src="https://img.youtube.com/vi/VUAokop0MTA/hqdefault.jpg" alt="Gordon Wetzstein talk thumbnail">
+          <div class="rec-play"><span class="badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></div>
+        </div>
+        <div class="rec-meta">
+          <div class="rec-title">Gordon Wetzstein</div>
+          <div class="rec-sub">Keynote 1</div>
+        </div>
+      </a>
+      <a class="rec-card" href="https://youtu.be/QeP2B4bmGLY" target="_blank" rel="noreferrer">
+        <div class="rec-thumb">
+          <img loading="lazy" src="https://img.youtube.com/vi/QeP2B4bmGLY/hqdefault.jpg" alt="Katja Schwarz talk thumbnail">
+          <div class="rec-play"><span class="badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></div>
+        </div>
+        <div class="rec-meta">
+          <div class="rec-title">Katja Schwarz</div>
+          <div class="rec-sub">Keynote 2</div>
+        </div>
+      </a>
+      <a class="rec-card" href="https://youtu.be/G1JFpTKrdXo" target="_blank" rel="noreferrer">
+        <div class="rec-thumb">
+          <img loading="lazy" src="https://img.youtube.com/vi/G1JFpTKrdXo/hqdefault.jpg" alt="Christian Rupprecht talk thumbnail">
+          <div class="rec-play"><span class="badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></div>
+        </div>
+        <div class="rec-meta">
+          <div class="rec-title">Christian Rupprecht</div>
+          <div class="rec-sub">Keynote 3</div>
+        </div>
+      </a>
+      <a class="rec-card" href="https://youtu.be/Vo1KuH2RUM0" target="_blank" rel="noreferrer">
+        <div class="rec-thumb">
+          <img loading="lazy" src="https://img.youtube.com/vi/Vo1KuH2RUM0/hqdefault.jpg" alt="Philipp Henzler talk thumbnail">
+          <div class="rec-play"><span class="badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></div>
+        </div>
+        <div class="rec-meta">
+          <div class="rec-title">Philipp Henzler</div>
+          <div class="rec-sub">Keynote 4</div>
+        </div>
+      </a>
+    </div>
 
     <h2 id="schedule">Schedule</h2>
     <p class="muted">Half-day workshop schedule (local CVPR time). 4th of June. Room 603. Streaming link will be added when available.
